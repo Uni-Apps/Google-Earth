@@ -1,0 +1,7 @@
+---
+- hosts: local
+  vars:
+    source: download
+
+  roles:
+  - Google Earth Pro

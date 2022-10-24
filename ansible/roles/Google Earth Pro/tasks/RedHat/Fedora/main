@@ -1,0 +1,22 @@
+---
+
+- name: Create a directory
+  become: true
+  ansible.builtin.file:
+    path: "{{to_dir}}"
+    state: directory
+    owner: "{{ansible_user}}"
+
+- name: Download Google Earth Pro
+  ansible.builtin.get_url:
+    url: https://dl.google.com/dl/earth/client/current/google-earth-pro-stable-current.x86_64.rpm
+    dest: "{{to_dir}}/google-earth-pro-stable-current.x86_64.rpm"
+    mode: '0744'
+
+- name: Install Google Earth Pro
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - "{{to_dir}}/google-earth-pro-stable-current.x86_64.rpm"
+    state: latest
+    disable_gpg_check: "{{install_unsafe}}"

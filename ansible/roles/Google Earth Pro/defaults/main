@@ -1,0 +1,6 @@
+---
+
+to_dir: "/var/google-earth"
+
+# disable_gpg_check
+install_unsafe: true
